@@ -1,0 +1,1385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>全文标明引文报告</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="toTop" content="true">
+    <meta content="0" http-equiv="Expires"/>
+    <meta content="no-cache" http-equiv="Pragma"/>
+    <meta content="no-cache" http-equiv="Cache-Control"/>
+    <meta content="no-cache" http-equiv="Cache"/>
+    <link href="css/index_2018051810.css" type="text/css" rel="stylesheet"/>
+    <script src="js/jquery1.42.min.js" type="text/javascript"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
+    <script src="js/esl.js" type="text/javascript"></script>
+        <script src="js/toTop.js" type="text/javascript"></script>
+    <!--解决IE 6不支持png格式的代码-->
+    <!--[if IE 6]>-->
+    <script src="js/png.js" type="text/javascript"></script>
+    <script>
+        var linkUrl = 'https://www.paperyy.com/paper_service.aspx';
+        var domainUrl = linkUrl.substring(linkUrl.indexOf("//") + 2, linkUrl.indexOf("/", linkUrl.indexOf("//") + 2));
+        DD_belatedPNG.fix('.pngfix');
+
+        //正则表达式，获取地址中的参数
+        var reg = new RegExp("(^|&)data=([^&]*)(&|$)", "i");
+
+        function getQueryString() {
+            var search = location.search;
+            var param = search.substr(1).match(reg);
+            if (param == null) return;
+            var encode = param[2];
+            var decode = decodeURIComponent(encode);
+            var data = JSON.parse(decode);
+            var urlMap = data.UrlMap;
+            $(".repTabLink_0426 a").each(function () {
+                var key = $(this).attr("href");
+                if(urlMap[key]) {
+                    var url;
+                    if (urlMap[key].indexOf("?") > -1) {
+                        url = urlMap[key] + "&data=" + encode;
+                    } else {
+                        url = urlMap[key] + "?data=" + encode;
+                    }
+                    $(this).attr("href", url);
+                }
+            });
+            $("#navigation").show();
+        }
+        $(document).ready(function () {
+            getQueryString();
+        });
+
+        var reportServiceUrl= "https://aliyun.gateway.laibokeji.com/lb-report-service";
+        var reportServiceKey = "KEJND0CJ";
+        function getBuried(eventId,eventType,page){
+            var buriedData = {
+                appkey: reportServiceKey,
+                eventId:  eventId,
+                eventType: eventType,
+                page:  page,
+                platform: "PC",
+                userId: 0
+            }
+            try{
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    async: true,
+                    contentType : 'application/json',
+                    data:JSON.stringify(buriedData),
+                    url: reportServiceUrl + "/api/selling-points/add?t=" + new Date().getTime(),
+                    error: function(XmlHttpRequest, textStatus, errorThrown) {},
+                    success: function(res) {}
+                });
+            }catch(err){}
+        }
+    </script>
+    <style>
+        /**
+        * 非至尊版报告检测报告结果样式
+        *
+        */
+
+        .ReportResult_Con1_new {
+            width: 100%;
+            height: 40px;
+        }
+
+        .ReportResult_Con1_new ul li{
+            display: inline-block;
+            margin-right: 30px;
+            height: 34px;
+        }
+
+        .ReportResult_Con1_new .result-word {
+            position: relative;
+        }
+
+        .ReportResult_Con1_new .result-word .text-up {
+            position: absolute;
+            width: 120px;
+        }
+
+        .ReportResult_Con1_new .result-word .text-down {
+            position: absolute;
+            top: 25px;
+            width: 120px;
+            left: 14px;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(1){
+            font-weight: 800;
+        }
+
+        .ReportResult_Con1_new ul li:nth-child(3){
+            margin-right: 40px;
+        }
+
+        .color-red {
+            color: #ef001c
+        }
+
+        .TextInfoContent_right .green{
+            color: #6A902E;
+            font-weight: bold;
+        }
+
+        .TextInfoContent_right .gray{
+            color: #C0C0C0;
+        }
+        .wrapper_con{
+            position: relative;
+        }
+        .zjk-tips{
+            width: 210px;
+            background: #fff;
+            position: absolute;
+            right: -240px;
+            top: 207px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .zjk-tips::after{
+            content: '';
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: #fff;
+            position: absolute;
+            left: -19px;
+            top: 23px;
+        }
+        .cnki_forecast {
+            bottom : 7px
+        }
+        .seal {
+            right: 7px;
+        }
+        .ReportResult_Con1 dl dd.qu4 {
+            background-position: -300px -450px;
+        }
+        .ReportResult_Con1 dl dd.qu2 {
+            width: 224px;
+        }
+        .ReportResult_Con1 dl dd {
+            display: block;
+            float: left;
+            font-size: 14px;
+            background: url(images/li.gif?v20210924) no-repeat;
+            width: 184px;
+            padding-left: 23px;
+            margin-right: 15px;
+            margin-left: 0px;
+            height: 24px;
+            line-height: 24px;
+        }
+        .repTabLink_0426 li {
+            width: 192px;
+            margin-right: 0px;
+        }
+
+        /* 论文检查样式 */
+        .check-com-box {
+            background: #ffffff;
+            box-shadow: 0px 4px 18px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 6px 6px 6px 6px;
+            border: 1px solid #e6e8ea;
+            width: 360px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item {
+            cursor: pointer;
+            height: 52px;
+            border-bottom: 1px solid #f0f1f2;
+            margin: 0px 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .check-com-box .check-com-item-box:first-child .check-com-item-row {
+            display: block;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-title {
+            color: #3f4654;
+            font-weight: 700;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-issue-number {
+            width: 39px;
+            display: inline-block;
+            background: #fdeddf;
+            border-radius: 34px 34px 34px 34px;
+            text-align: center;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .arrows {
+            color: #a5a9b8;
+            margin: 0 8px 0 15px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-com-item-arrows {
+            margin: 0 8px 0 15px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row {
+            display: none;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box {
+            padding: 24px 24px 0 18px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list {
+            max-height: 500px;
+            overflow: auto;
+            border-bottom: 1px solid #f5f6f7;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-list-item-box-title {
+            width: 39px;
+            color: #3f4654;
+            font-size: 13px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-list-item-box-title .structure-label {
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            border-radius: 4px 4px 4px 4px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .structure-item-label {
+            cursor: pointer;
+            width: 77px;
+            height: 28px;
+            background: #FFEAEA;
+            border-radius: 4px 4px 4px 4px;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+            line-height: 28px;
+            display: inline-block;
+            color: #FD6F70;
+            border: 1px solid rgba(0, 0, 0, 0);
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .structure-item-label:hover {
+            border-color: #FD6F70;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .suggest-text {
+            margin-bottom: 12px;
+            margin-left: 8px;
+            color: #656b76;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .structure-list-item-box .structure-item-label-box .suggest-text .problem-nuber {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-row .check-row-box .structure-list .column {
+            flex-direction: column;
+        }
+
+        .footer-popup-box .check-com-box-close {
+            position: absolute;
+            right: 0;
+            top: -30px;
+            cursor: pointer;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-oneOn {
+            background: rgb(247, 248, 249);
+            border-radius: 6px 6px 0px 0px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-oneOn .check-com-item-arrows {
+            transform: rotate(-90deg);
+        }
+
+        .check-com-box .check-com-item-box .check-com-item-box-one {
+            border-radius: 6px 6px 0px 0px;
+        }
+
+        .check-com-box .check-com-item-box .check-com-item .check-item-right .check-issue-numberNo {
+            margin-right: 42px;
+        }
+
+        /* 底部弹窗纠错 */
+        .footer-popup-box {
+            position: fixed;
+            bottom: 10%;
+            right: 10px;
+            z-index: 3;
+        }
+
+        .check-correct-box {
+            background: #FFFFFF;
+            box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.16);
+            border-radius: 6px;
+            margin-bottom: 3px;
+            width: 360px;
+        }
+
+        .check-correct-box-title {
+            height: 44px;
+            background: #F7F8F9;
+            border-radius: 6px 6px 0px 0px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #3F4654;
+            padding-left: 20px;
+            line-height: 44px;
+        }
+
+        .check-correct-box-li {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid #F0F1F2;
+            margin: 0 20px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .check-correct-box-li-num {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: #FFFFFF;
+            border: 1px solid #D8DADD;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 16px;
+            font-size: 12px;
+            color: #9EA2A9;
+        }
+
+        .check-correct-box-li-old {
+            color: #5462CC;
+        }
+
+        .check-correct-box-li-new {
+            display: inline-block;
+            padding: 0px 10px;
+            background: #EAECF9;
+            border-radius: 4px 4px 4px 4px;
+            color: #5462CC;
+            font-size: 13px;
+            height: 26px;
+            line-height: 26px;
+            margin-left: 8px;
+        }
+
+        .check-correct-box-liAll {
+            height: 44px;
+            line-height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #3F4654;
+            padding: 0 20px 0 45px;
+            cursor: pointer;
+        }
+
+        .check-correct-box-liAll-num {
+            padding: 0 8px;
+            height: 20px;
+            background: #EAECF9;
+            border-radius: 34px 34px 34px 34px;
+            text-align: center;
+            line-height: 19px;
+            font-size: 12px;
+            color: #5462CC;
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        .check-correct-box-lists {
+            position: relative;
+        }
+
+        .check-correct-box-lists-pup {
+            width: 137px;
+            height: 28px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 12px 1px rgba(0, 0, 0, 0.12);
+            border-radius: 4px 4px 4px 4px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 12px;
+            color: #3F4654;
+            position: absolute;
+            top: -30px;
+            right: 50px;
+            display: none;
+        }
+
+        .check-correct-box-li:hover .check-correct-box-lists-pup {
+            display: block;
+        }
+
+        .check-correct-box-lists-pup img {
+            margin-right: 3px;
+            margin-top: -3px;
+        }
+
+        .check-correct-box-lists-pup:before {
+            content: '';
+            display: block;
+            border-left: 6px solid transparent;
+            border-top: 9px solid #fff;
+            border-right: 6px solid transparent;
+            position: absolute;
+            bottom: -8px;
+            left: 11px;
+            filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.12));
+        }
+
+        .footer-popup-box-on {
+            bottom: 56%;
+        }
+
+        /* 底部在线改重弹窗 */
+        .check-online-tips-box{
+            width: 154px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 18px 1px rgb(0 0 0 / 16%);
+            border-radius: 6px 6px 6px 6px;
+            position: fixed;
+            bottom: 7%;
+            left: 12%;
+            z-index: 9999;
+            padding: 20px 20px;
+        }
+        .check-online-tips-box-timg{
+            position: absolute;
+            top: -43px;
+            left: -16px;
+        }
+        .check-online-tips-box-close{
+            width: 13px;
+            height: 13px;
+            cursor: pointer;
+            position: absolute;
+            right: 14px;
+            top: 14px;
+        }
+        .check-online-tips-box-close img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .check-online-tips-xbt{
+            font-size: 15px;
+            color: #3F4654;
+        }
+        .check-online-tips-xbt span{
+            border-bottom: 8px solid #DAE4FD;
+        }
+        .check-online-tips-xbt span em{
+            font-size: 15px;
+            color: #3F4654;
+            font-weight: bold;
+            font-style: initial;
+            position: relative;
+            top: 6px;
+        }
+        .check-online-tips-txt{
+            font-size: 13px;
+            color: #3F4654;
+            line-height: 20px;
+            margin-top: 15px;
+        }
+        .check-online-tips-btn{
+            width: 114px;
+            height: 30px;
+            background: #467AF2;
+            border-radius: 6px 6px 6px 6px;
+            margin: 0 auto;
+            line-height: 30px;
+            font-size: 13px;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .check-online-tips-btn a{
+            font-size: 13px;
+            color: #FFFFFF;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 在线修改样式 */
+        .check-online-text-btn {
+            color: #467AF2;
+            font-size: 12px;
+            cursor: pointer;
+            float: right;
+            margin-right: 5px;
+            display: none;
+        }
+
+        .check-online-text-btn a {
+            color: #467AF2;
+            font-size: 12px;
+            display: block;
+        }
+
+        .check-online-text-btn span {
+            font-weight: normal;
+            text-decoration: underline;
+        }
+
+        .Origin_text:hover .check-online-text-btn {
+            display: inline;
+        }
+
+        @media screen and (max-width: 1880px) {
+            .check-online-tips-box{
+                left: 10%;
+            }
+        }
+        @media screen and (max-width: 1790px) {
+            .check-online-tips-box{
+                left: 8%;
+            }
+        }
+        @media screen and (max-width: 1700px) {
+            .check-online-tips-box{
+                left: 6%;
+            }
+        }
+        @media screen and (max-width: 1620px) {
+            .check-online-tips-box{
+                left: 4%;
+            }
+        }
+        @media screen and (max-width: 1560px) {
+            .check-online-tips-box{
+                left: 2%;
+            }
+        }
+        @media screen and (max-width: 1490px) {
+            .check-online-tips-box{
+                left: 1.5%;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 底部在线改重弹窗 -->
+    <div class="check-online-tips-box">
+        <img src="images/check_online_tips_icon1.png" class="check-online-tips-box-timg"/>
+        <div class="check-online-tips-box-close" onClick="checkOnlineTipClose()">
+            <img src="images/close.png" />
+        </div>
+        <div class="check-online-tips-xbt">
+                        <span>
+                            <em>智能写作</em>
+                        </span>
+        </div>
+        <div class="check-online-tips-txt">
+            逐句查看相似源<br>
+            对照改重
+        </div>
+        <div class="check-online-tips-txt">
+            智能续写改写<br>
+            轻松消除飘红文字
+        </div>
+        <div class="check-online-tips-btn">
+            立即体验
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".check-online-tips-btn").click(function(){
+                var newWindow = window.open();
+                newWindow.location.href= "https://" + domainUrl + '/online_check/prepare_check/1-58dbc1bd-367c-4068-aae8-58d353727859'
+            })
+        })
+        function checkOnlineTipClose(){
+            $(".check-online-tips-box").hide()
+        }
+    </script>
+<!-- 底部在线改重弹窗 end-->
+
+<!--底部弹框-->
+    <div class="footer-popup-box">
+            <div class="check-com-box-close" onClick="checkBoxClose()">
+                <img src="images/check_close.png"/>
+            </div>
+            <div class="check-correct-box">
+                <div class="check-correct-box-title">
+                    错别字建议
+                </div>
+                <div class="check-correct-box-lists">
+                        <div class="check-correct-box-li">
+                            <div class="check-correct-box-lists-pup">
+                                <img src="images/check_correct_icon1.png"/>
+                                点击打开纠错
+                            </div>
+                            <span class="check-correct-box-li-num">
+						1
+					</span>
+                            “<span class="check-correct-box-li-old">拓</span>”
+                            建议
+                                加词为
+                                <span class="check-correct-box-li-new">了拓</span>
+                        </div>
+                        <div class="check-correct-box-li">
+                            <div class="check-correct-box-lists-pup">
+                                <img src="images/check_correct_icon1.png"/>
+                                点击打开纠错
+                            </div>
+                            <span class="check-correct-box-li-num">
+						2
+					</span>
+                            “<span class="check-correct-box-li-old">政</span>”
+                            建议
+                                加词为
+                                <span class="check-correct-box-li-new">。政</span>
+                        </div>
+                    <div class="check-correct-box-liAll">
+                        <div>
+                            查看全部错别字
+                        </div>
+                        <img src="images/check_icon_arrows.png" class="check-com-item-arrows"/>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $('.check-correct-box-liAll,.check-correct-box-li').click(function () {
+                        var newWindow = window.open();
+                        newWindow.location.href = "https://" + domainUrl + '/yy-pro/page/netdisc/writing-loading?taskId=1-58dbc1bd-367c-4068-aae8-58d353727859&correctCheck=true'
+                    })
+                })
+            </script>
+            <div class="check-com-box">
+
+                <div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one check-com-item-box-oneOn"
+                             data-num="9">
+                            <div class="check-com-item">
+                                <div class="check-item-title">结构建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(255, 234, 234);"><span
+                                                style="color: rgb(253, 111, 112);">
+                                            9
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row"  >
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title">缺失：</div>
+                                            <div class="structure-item-label-box">
+                                                    <span class="structure-item-label">页眉</span>
+                                                    <span class="structure-item-label">页脚</span>
+                                                    <span class="structure-item-label">封面</span>
+                                                    <span class="structure-item-label">授权书</span>
+                                                    <span class="structure-item-label">英文摘要</span>
+                                                    <span class="structure-item-label">致谢</span>
+                                                    <span class="structure-item-label">英文关键词</span>
+                                                    <span class="structure-item-label">参考文献</span>
+                                            </div>
+                                        </div>
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title">过少：</div>
+                                            <div class="structure-item-label-box">
+                                                    <span class="structure-item-label">中文关键词</span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="0">
+                            <div class="check-com-item">
+                                <div class="check-item-title">格式建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number check-issue-numberNo"
+                                            style="background: rgb(253, 237, 223);"><span
+                                                style="color: rgb(252, 141, 15);">
+                                            0
+									</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="8">
+                            <div class="check-com-item">
+                                <div class="check-item-title">标点建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(232, 239, 253);"><span
+                                                style="color: rgb(73, 125, 239);">
+                                            8
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(232, 239, 253); color: rgb(73, 125, 239);">
+												全文
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(73, 125, 239);">
+														8
+												</span> 处中文标点建议换成"全角"
+                                                    </p>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="check-com-item-box">
+                        <div class="check-com-item-box-one" data-num="2">
+                            <div class="check-com-item">
+                                <div class="check-item-title">质量建议</div>
+                                <div class="check-item-right"><span
+                                            class="check-issue-number "
+                                            style="background: rgb(212, 245, 230);"><span
+                                                style="color: rgb(31, 154, 96);">
+                                            2
+									</span></span>
+                                        <img src="images/check_icon_arrows.png"
+                                             class="check-com-item-arrows"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="check-com-item-row">
+                            <div class="check-row-box">
+                                    <div class="structure-list">
+                                        <div class="structure-list-item-box">
+                                            <div class="structure-list-item-box-title" style="width: 62px;"><span
+                                                        class="structure-label"
+                                                        style="background: rgb(212, 245, 230); color: rgb(31, 154, 96);">
+													参考文献
+											</span>
+                                            </div>
+                                            <div class="structure-item-label-box column ">
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(31, 154, 96);">
+														1
+												</span> 处建议参考文献包含英文文献
+                                                    </p>
+                                                    <p class="suggest-text">有
+                                                        <span class="problem-nuber"
+                                                              style="color: rgb(31, 154, 96);">
+														1
+												</span> 处建议参考文献包含近三年文献
+                                                    </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(function () {
+                    $('.check-com-item-box-one').click(function () {
+                        if ($(this).attr("data-num") != "0") {
+                            $(this).toggleClass("check-com-item-box-oneOn")
+                                .parent().siblings().find(".check-com-item-box-one").removeClass("check-com-item-box-oneOn");
+                            $(this).siblings(".check-com-item-row").slideToggle()
+                                .parent().siblings().find(".check-com-item-row").slideUp();
+                        }
+                    })
+                    $(".structure-item-label,.problem-nuber").click(function () {
+                        var newWindow = window.open();
+                        newWindow.location.href = "https://" + domainUrl + '/yy-pro/page/netdisc/writing-loading?taskId=1-58dbc1bd-367c-4068-aae8-58d353727859&reportCheck=true'
+                    })
+                })
+            </script>
+        <script>
+            function checkBoxClose() {
+                $(".footer-popup-box").hide();
+            }
+        </script>
+    </div>
+<!--topbg-->
+<a name="top"></a>
+<div class="topbg">
+    <div class="top">
+	<div style="top: 30px;position: absolute;left: 50px;z-index: 66;">
+            <a class="left_top_btn" href="https://www.paperyy.com/member_new/thesis/post.aspx" target="_blank">
+                <img src="images/go_free_check.png">
+            </a>
+        </div>
+	<div style="top: 30px;position: absolute;left: 180px;z-index: 66;">
+            <a class="left_top_btn" href="https://www.paperyy.com/online_check/prepare_check/1-58dbc1bd-367c-4068-aae8-58d353727859" target="_blank">
+                <img src="images/go_check_online.png">
+            </a>
+        </div>
+        <div class="logo pngfix">
+                <img src="images/logo_-1.png">（全文标明引文报告）
+        </div>
+    </div>
+</div>
+<!--topbg end-->
+<!--wrapper-->
+<div class="wrapper">
+    <!--wrapper_topbg-->
+    <div class="wrapper_topbg">
+        <!--xp 20150305 begin-->
+        <div class="type1" style="font-size: 13px;height: 14px;line-height: 41px;"></div>
+        <!--xp 20150305 end-->
+        <!--wrapper_con-->
+        <div class="wrapper_con">
+                <div class="zjk-tips"  style="display: none;"></div>
+            <div class="wrapper_conT"></div>
+            <div class="wrapper_con_content">
+                <!--TextInfo-->
+                <div class="TextInfo Mar">
+                    <div class="navbar">
+                        <ul class="fastBar">
+                        </ul>
+                    </div>
+                    <!--TextInfoCon-->
+                    <div class="TextInfoCon">
+                        <div class="TextTitle" style="width:129px;">文献基本信息</div>
+                        <!--TextInfoContent-->
+                        <div class="TextInfoContent">
+                            <div class="TextInfoContent_left">
+                                <ul>
+                                    <li><span class="lbt">检测文献：</span>MP2309018-罗伟力-共同价值观视域下中国自主生态文明话语体系构建的路径</li>
+                                    <li><span class="lbt">文献作者：</span></li>
+                                    <li><span class="lbt">报告时间：</span>2023-11-25 19:28:31</li>
+                                    <li><span class="lbt">段落个数：</span>1</li>
+                                    <li><span class="lbt">报告编号：</span>YY202311251928294078</li>
+                                </ul>
+                            </div>
+                            <div class="division_line"></div>
+                            <div class="TextInfoContent_right">
+                                <ul>
+                                    <li class="title">检测范围：</li>
+                                        <li>中国期刊库</li>
+                                        <li>中国图书库</li>
+                                        <li>硕士论文库</li>
+                                        <li>博士论文库</li>
+                                        <li>会议论文库</li>
+                                        <li>报纸库</li>
+                                        <li>中国专利库</li>
+                                        <li>中国标准库</li>
+                                        <li>百科库</li>
+                                        <li>网页库</li>
+                                        <li>中国共享库</li>
+                                        <li>工作总结</li>
+                                        <li>思想汇报</li>
+                                        <li>项目申报书</li>
+                                            <li class="gray">个人自建库</li>
+                                            <li class="gray">共享自建库</li>
+                                            <li class="gray">机构自建库</li>
+                                </ul>
+                            </div>
+                            <div class="seal">
+                                <div id="SealArea">
+                                    <div id="SealBg">
+                                        <img width="125" height="125" src="data:image/png;base64,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"/>
+                                    </div>
+                                    <div id="SealPercent"></div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--TextInfoContent end-->
+                    </div>
+                    <!--TextInfoCon end-->
+                </div>
+                <!--TextInfo end-->
+                    <div class="Recommend">
+                        <div class="TextTitle" style="width:112px;">推荐服务</div>
+                        <div class="ReportResult_T"></div>
+                        <div class="ReportResult_Con recommend_list">
+                                <a class="recommend_row recom-row" href="https://www.paperyy.com/check-pay/reduce-pay-task/YY202311251928294078" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img1" src="images/recommend_icon1.png"/>
+                                    </div>
+                                    <p class="recommend_right">自动降重</p>
+                                </a>
+                                <a class="recommend_row recom-row" href="https://www.paperyy.com/online_check/prepare_check/1-58dbc1bd-367c-4068-aae8-58d353727859" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img2" src="images/recommend_icon2.png"/>
+                                    </div>
+                                    <p class="recommend_right">在线修改</p>
+                                </a>
+                                <a class="recommend_row recom-row" href="https://www.paperyy.com/paper-correction/check?taskId=1-58dbc1bd-367c-4068-aae8-58d353727859" target="_blank">
+                                    <div class="recommend_left">
+                                        <img class="img4" src="images/recommend_icon4.png"/>
+                                    </div>
+                                    <p class="recommend_right">论文纠错</p>
+                                </a>
+                            <a class="recommend_row" href="https://www.ixueshu.com/" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img5" src="images/recommend_icon5.png"/>
+                                </div>
+                                <p class="recommend_right">找论文</p>
+                            </a>
+                            <a class="recommend_row" href="resource/降重秘籍.pdf" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img5" src="images/recommend_icon1.png">
+                                </div>
+                                <p class="recommend_right">降重秘籍</p>
+                            </a>
+                            <a class="recommend_row" href="https://www.paperyy.com/member_new/thesis/post.aspx" target="_blank">
+                                <div class="recommend_left">
+                                    <img class="img3" src="images/recommend_icon3.png"/>
+                                </div>
+                                <p class="recommend_right">免费查重</p>
+                            </a>
+                        </div>
+                        <div class="ReportResult_Bot"></div>
+                    </div>
+                    <div>
+                        <!--<div class="banner_0508"><a href="https://www.paperyy.com/reduce_repetition.aspx?reportnum=YY202311251928294078" target="_blank"></a></div>-->
+                            <a class="recommend-img" style="display: none;" href="https://www.paperyy.com/academic-check/index" onclick="getBuried('PC_xs_check_report_dinggao','share','index');" target="_blank">
+                                <div class="banner_0509 banner_0512">
+
+                                </div>
+                            </a>
+
+                    </div>
+                <!--ReportResult-->
+                <!-- 至尊版还是以前展示的内容，其它版本做调整 -->
+                    <div class="ReportResult Mar">
+                        <div class="TextTitle" style="width:129px;">检测报告结果</div>
+                        <div class="ReportResult_T"></div>
+                        <div class="ReportResult_Con">
+                            <!--ReportResult_Con1-->
+                            <div class="ReportResult_Con1_new detail_L">
+                                <ul>
+                                    <li style="display: none">
+                                        <span class="text_blue">重复字数：</span>89
+                                    </li>
+                                    <li style="display: none">
+                                        <span class="text_blue">总字数：</span>5,032（不含参考文献）
+                                    </li>
+                                    <li>
+                                        <span class="color-red report">总文字复制比：1.8%</span>
+                                    </li>
+                                    <li>
+                                        <span>去除引用文献复制比：</span><span class="color-red">1.8%</span>
+                                    </li>
+                                    <li>
+                                        <span>去除本人已发表文献复制比：</span><span class="color-red"> 1.8%</span>
+                                    </li>
+                                    <li>
+                                        <span>自建库复制比：</span><span class="color-red"> 0%</span>
+                                    </li>
+                                    <li class="result-word">
+                                        <p class="text-up">重复字数：89</p>
+                                        <p class="text-down">总字数：5,032</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--ReportResult_Con1 end-->
+                        </div>
+                        <div class="ReportResult_Bot"></div>
+                    </div>
+                <!--ReportResult end-->
+                <!--DetailReport-->
+                <div class="DetailReport Mar">
+                    <!--tab begin-->
+                    <div class="notice">
+                        <div class="repTabLink_0426">
+                                <ul>
+                                            <li class="curr">全文标明引文报告</li>
+                                            <li><a href="去除本人已发表文献报告.html" target="_blank">去除本人已发表文献报告</a></li>
+                                            <li><a href="简洁报告.html" target="_blank">简洁报告</a></li>
+                                            <li><a href="全文对照报告.html" target="_blank">全文对照报告</a></li>
+                                </ul>
+                        </div>
+                        <div class="tab-bd">
+                            <div class="repTip_04261800">
+                                检测原文内容中<span class="red">红色字体</span>标记的为重复文字
+                                ，<a class="left_top_btn" href="https://www.paperyy.com/online_check/prepare_check/1-58dbc1bd-367c-4068-aae8-58d353727859" target="_blank"
+                                   style="color: #467AF2;font-weight: bold;text-decoration: underline;">在线改重</a>
+                            </div>
+                            <div class="tab-pal">
+                                <ul>
+                                    <!--xp 20150306 begin-->
+                                    <!--summary-->
+                                    <div class="summary">
+                                            <!--summary-->
+                                            <dl>
+                                                <dt>
+                                                    <span class="sumInfo">1.MP2309018-罗伟力-共同价值观视域下中国自主生态文明话语体系构建的路径_第1部分</span>
+                                                    <span class="sumTotal">总字数：5,032</span>
+                                                </dt>
+                                                <dd>文字复制比：1.8
+                                                    %（89）
+                                                </dd>
+                                            </dl>
+                                                <div class="simply_table">
+                                                    <table bordercolor="#fff" cellspacing="0" cellpadding="0"
+                                                           class="simp_table">
+
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">1</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.lwkoo.com/shengtaiwenminglunwen/4363.html"
+                                                                               target="_blank">在生态伦理视野中构建美丽乡村的问题研究 - 生态文明论文(共5157字)</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.7%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">2</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="https://www.docin.com/p%2D801606458.html"
+                                                                               target="_blank">深入推进我国生态文明建设的现实思考_理论研究深化与拓展的方向选择_王军..</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.7%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">3</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://xueshu.baidu.com/s?wd=“人与自然和谐共生的现代化”之时代意义"
+                                                                               target="_blank">“人与自然和谐共生的现代化”之时代意义</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                            王晴 -
+                                                                            《沈阳工业大学学报(社会科学版)
+                                                                            》- 2022
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.6%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">4</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.doc88.com/p-3405042688324.html"
+                                                                               target="_blank">经济增长如何影响环境质量——甚于省际面板数据的实证检验 - 道客巴巴</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.5%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="org_number">
+                                                                    <span class="listNu">5</span>
+                                                                </td>
+                                                                <td class="org_content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="http://www.doc88.com/p-7364953659497.html"
+                                                                               target="_blank">城乡环境,实施方案 - 道客巴巴</a>
+                                                                        </li>
+                                                                        <li class="decoration">
+                                                                             -
+                                                                            《网页
+                                                                            》- 
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                                <td class="org_line"></td>
+                                                                <td class="quote">
+                                                                    <ul class="quote_num">
+                                                                        <li class="shuzi">0.5%</li>
+                                                                        <li class="fenge_line"></li>
+                                                                        <li class="if_f">
+                                                                            是否引证：否
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="message_line">
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        <!--内容1 end-->
+                                                    </table>
+                                                </div>
+                                            <!--detail_table end-->
+                                            <div class="yuanwen_title">原文内容</div>
+                                            <div class="yuanwen">
+                                                <p>共同价值观视域下中国自主生态文明话语体系构建的路径</p><p>摘要:本论文旨在探讨在共同价值观的框架下,中国如何构建自主的生态文明话语体系。通过深入分析中国传统文化与现代社会的关系,以及政府、社会和个体在生态文明建设中的角色,本文提出一条符合中国国情的生态文明话语体系构建路径。</p><p>关键词:共同价值观、生态文明、话语体系、中国文化、国情</p><p>第一部分:引言</p><p>1.1背景介绍</p><p>中国,作为世界上人口最多的国家之一,正面临着严重的环境挑战。随着经济的快速发展,环境污染、资源枯竭、生态系统崩溃等问题愈发凸显。这些问题不仅威胁到国家的可持续发展,也<em class='similar'>对居民的生活质量产生了深远的影响</em>。在<em class='similar'>这样的背景下,中国政府不仅提出了建设生态文明的战略目标,</em>更将其纳入国家发展的总体规划<em class='similar'>。中国传统文化中蕴含着丰富的生态智慧,</em>强调人与自然的和谐共生。然而,在现代化进程中,部分传统价值逐渐被忽视,导致了环境问题的加剧。因此,构建生态文明成为中国社会共同关注的焦点。</p><p>此外,国际社会对环境问题的关注不断升温,气候变化、生物多样性丧失等全球性问题凸显了各国需共同努力构建可持续发展的未来。中国积极响应并参与国际环保合作,为全球生态文明的建设贡献力量。</p><p>在这一背景下,本论文旨在探讨在共同价值观的框架下,中国如何构建自主的生态文明话语体系,以应对当前环境问题并为未来可持续发展奠定基础。通过深入研究中国传统文化、政府政策、社会行动和个体参与,期望能够提供一些建设性的观点和建议,为中国生态文明的建设提供理论支持。</p><p>1.2目的与意义</p><p>构建中国自主的生态文明话语体系,旨在实现环境可持续发展、提升居民生活质量,以及推动国家向更为可持续的未来迈进。具体目的与意义如下:</p><p>目的:</p><p>通过分析中国传统文化中蕴含的共同价值观,挖掘其中对生态文明建设的启示,为构建相应的话语体系提供理论基础。研究共同价值观在当代中国社会中的具体表现,特别是在环保、可持续发展方面的体现,为构建与社会实际情况相契合的话语体系提供实证支持。深入分析政府在构建生态文明话语体系中的政策、法规和倡导的角色,同时研究社会组织、企业等在生态文明建设中的责任和行动,以及个体在构建过程中的积极参与。基于对共同价值观的理解和对中国社会各层面的分析,提出一条符合国情、可行实施的生态文明话语体系构建路径。</p><p>意义:</p><p>构建自主的生态文明话语体系有助于指导国家发展方向,实现经济与环境的协调发展,为可持续的国家未来打下基础。通过深入挖掘共同价值观,有助于传承和弘扬中国传统文化,使其在现代社会中焕发新的生命力。生态文明话语体系的构建有助于引导社会观念朝向环保、绿色发展方向转变,培养公民的环保意识和责任感。</p><p>构建生态文明话语体系,使中国在国际舞台上更好地参与全球环保合作,共同应对全球性环境问题。</p><p>第二部分:共同价值观与生态文明</p><p>2.1共同价值观的内涵</p><p>中国传统文化中蕴含着深刻的共同价值观,这些价值观贯穿于千年的历史中,塑造了中国人民的思想观念和行为准则。在构建中国自主的生态文明话语体系的过程中,深入挖掘共同价值观的内涵具有重要的启示作用。</p><p>和谐共生:中国传统文化强调人与自然的和谐共生关系。这一价值观体现在许多文学、艺术作品中,强调人类应当与自然界和谐相处,而非对抗。构建生态文明话语体系时,可以借鉴这一价值观,提倡人与自然的共同发展,寻求人类社会与自然环境的平衡点。</p><p>传统文化中对自然的尊重贯穿于儒家、道家、佛家等各个思想体系。尊重自然意味着对自然资源的珍视和对生态系统的保护。在构建话语体系时,可以通过强调对自然的尊重,推动社会对环境的关注和保护。中国传统文化注重道德伦理,倡导仁爱、诚实、宽容等道德观念。将这些道德伦理融入到生态文明话语体系中,可以强调每个个体在环保行动中的责任和义务,构建积极向上的社会氛围。传统文化中存在着深厚的宇宙观念,强调宇宙是一个有机的整体。将这一观念融入到生态文明话语体系中,有助于树立全球意识,推动国际合作解决全球性环境问题。</p><p>中国传统文化中的家国情怀强调对家庭和国家的热爱与责任。在构建话语体系时,可以通过强调对家园的热爱,唤起公民的环保意识,使每个人都感受到对环境的责任。</p><p>2.2共同价值观在现代社会的体现</p><p>共同价值观在现代社会中扮演着重要的角色,特别是在中国这个拥有悠久历史的国家。这些价值观在当代社会中得以传承和体现,特别是在环保、可持续发展等方面,共同价值观呼应着社会的关切和期待。</p><p>传统的尊重自然和和谐共生观念在现代社会中被转化为更为具体的环保意识。公众对空气、水质、土地污染的关注度逐渐提升,个体和社会组织积极参与各类环保行动,如植树活动、垃圾分类等。这种环保意识的提升与传统文化中对自然的尊重紧密相连。</p><p>中国社会逐渐转向可持续发展的理念,将经济增长与环境保护相结合。共同价值观中的和谐共生和道德伦理的理念促使人们更加关注长期的生态平衡,提倡经济活动的可持续性,避免过度开发和过度消耗资源。传统的道德伦理观念在现代社会中被重新强调,个体和企业在追求经济利益的同时,更加注重社会责任感。企业越来越关注社会和环境的可持续性,通过实施社会责任项目来回馈社会,符合共同价值观中的仁爱、诚实等道德准则。中国的宇宙观念和家国情怀在国际舞台上得到拓展。中国积极参与国际环保合作,推动全球环境议程。这与传统的宇宙观和对家国的热爱相呼应,将家国情怀延伸至全球,体现了共同价值观在国际层面的影响力。</p><p>第三部分:生态文明话语体系的构建</p><p>3.1国家层面的构建</p><p>在构建中国自主的生态文明话语体系的过程中,国家层面的角色至关重要。政府在这一过程中既是推动者,也是规范者,需要通过政策、法规等手段引导社会形成积极的生态文明话语体系。</p><p>国家可以制定更为严格和明确的生态文明法规,明确环境保护的原则和标准,规范各个行业的环境行为。这不仅可以约束企业和个体的行为,也为构建生态文明话语体系提供了法律基础政府可以通过资金扶持、政策激励等手段推动环保技术的创新和应用,鼓励企业采用更环保的生产方式。将绿色技术和可持续发展理念融入国家发展战略,形成积极向上的国家形象。国家可以通过宣传教育和媒体引导公众形成积极的生态文明观念。借助国家级媒体平台,推动环保理念深入人心,使其成为社会共识。</p><p>建立奖励机制,对在生态文明建设中取得显著成绩的企业、社会组织、个人进行奖励,鼓励更多的力量参与到生态文明的建设中来。国家可以积极参与国际环保合作,分享经验、共同应对全球性环境问题。通过参与国际环保大会、制定全球环保目标等方式,推动国际社会形成共同的生态文明价值观。</p><p>通过教育体系,将生态文明理念纳入课程,培养学生对环境的关注和责任感。建立生态文明教育基地,提高公众环保意识,从小培养积极的生态公民。</p><p>3.2社会层面的构建</p><p>在构建中国自主的生态文明话语体系的过程中,社会层面的参与至关重要。社会组织、企业和公民都应当积极参与,形成共同的生态文明观念,共同推动生态文明的建设。鼓励和支持各类环保组织<em class='similar'>积极参与环保活动,开展植树造林、环保宣传等公益活动。</em>这些组织可以充当社会监督者,推动企业和政府更好地履行环保责任。鼓励企业履行社会责任,通过环保投资、可持续经营等方式实现经济效益和社会效益的双赢。企业可以主动采用清洁生产技术,降低对环境的影响,形成良性的生态文明企业文化。</p><p>引导公民积极参与环保行动,如垃圾分类、节能减排等。通过教育和宣传引导公民形成环保习惯,形成社会共识,推动环保理念深入人心。通过宣传倡导绿色消费观念,引导消费者选择环保、可持续的产品和服务。消费者的选择行为将间接影响企业的生产方式,形成市场对环保的需求。发动志愿者参与生态文明建设,开展环保宣传、生态修复等志愿活动。志愿者队伍可以迅速响应环保行动,形成社会力量的支持。</p><p>利用社交媒体等平台加强环保理念的传播,通过互联网推动生态文明话语在社会中的传播。社会媒体平台具有较强的传播力,可以迅速形成公共舆论,引导社会形成积极的生态文明价值观。</p><p>3.3个体层面的构建</p><p>在构建中国自主的生态文明话语体系的过程中,个体的参与和行为至关重要。每个人的意识和行动都对整个社会的生态文明建设产生积极的影响。</p><p>通过学校、社区等渠道加强环保教育,培养个体对环境问题的认知和关注。借助教育,引导个体形成积极的环保价值观。鼓励个体采用绿色生活方式,如骑行、步行、节约用水、减少能源消耗等。个体的生活方式对环境有直接的影响,通过倡导绿色生活,形成积极的环保行为。鼓励个体积极参与环保志愿活动,如植树造林、环保清理等。通过实际行动,个体能够深刻体验环保的意义,形成对环保的责任感和使命感。个体在日常消费中可以选择环保产品,支持绿色企业。通过个体的购买行为,引导市场向环保、可持续方向转变。强调垃圾分类的重要性,引导个体正确处理生活垃圾。同时,鼓励个体参与资源回收,减少资源浪费,推动循环经济的发展。在生活中自觉节约能源、水资源等资源,形成绿色的生活习惯。个体的自觉节约行为可以在微观层面积累起来,对整体资源消耗产生积极影响。通过加入环保社群、参与在线环保讨论,个体能够与其他关心环保的人分享经验、获取信息,形成共同的环保观念。</p><p>第四部分:构建路径的挑战与前景</p><p>4.1挑战分析</p><p>在构建中国自主的生态文明话语体系的过程中,面临着一系列挑战,了解这些挑战对于更好地应对和解决问题至关重要。</p><p>中国正面临着经济发展与环保之间的矛盾。一方面,需要推动经济增长,满足人民生活水平的提高;另一方面,必须应对环境问题,实现生态文明建设。如何在经济发展和环保之间找到平衡点,是一个亟需解决的难题。</p><p>要实现生态文明话语体系的构建,需要引导社会观念的转变,使人们更加注重环保、可持续发展。然而,这种观念的转变需要较长时间,面临来自传统思想、消费习惯等多方面的阻力。即便有了一系列环保政策和法规,政府在实施中可能面临执行难度。这包括监管不到位、环保成本较高等问题,需要政府进一步加强监管力度、降低环保成本,确保政策的有效执行。要推动生态文明话语体系的构建,需要通过深入的生态文明教育,培养公民的环保意识。然而,当前教育系统可能面临一些问题,如课程设置不合理、师资力量不足等,制约了生态文明教育的深入发展。</p><p>环境问题通常是全球性的,涉及国际合作和全球治理。中国在构建生态文明话语体系时,需要积极应对全球气候变化、生物多样性丧失等问题,加强与国际社会的合作。在构建生态文明话语体系的过程中,需要协调政府、企业、社会组织和公众的关系。不同利益主体之间可能存在矛盾,需要通过协商和合作实现各方的利益平衡。</p><p>4.2未来前景展望</p><p>尽管面临着一系列挑战,但通过克服这些难题,构建中国自主的生态文明话语体系具有广阔的未来前景。</p><p>随着共同价值观的深入推广和社会观念的转变,生态文明有望成为中国的核心价值观之一。这将深刻影响政策制定、社会行为,为国家的长期可持续发展奠定基础。随着科技的不断进步,绿色技术的创新和应用将加速推动中国向绿色发展的方向迈进。智能化、清洁能源等领域的技术进步将为生态文明的建设提供更多支持。</p><p>通过长期的教育宣传和社会参与,生态文明的理念有望深刻地渗透到社会各个层面。公众对环保、可持续发展的认知和关注将显著增加,形成更加积极的社会观念。面对环保和可持续发展的压力,政府有望进一步完善环保政策和法规体系,加强监管力度,推动企业和公众更好地履行环保责任。中国将更积极地参与国际环保合作,与其他国家共同应对全球性环境问题。通过共享经验、资源合作,推动全球环保事业的发展。</p><p>随着生态文明理念在社会中的传播,公民参与环保行动的积极性将不断提升。志愿者队伍的壮大、环保组织的活跃将成为社会建设的重要力量。</p><p>第五部分:结论</p><p>中国自主的生态文明话语体系的构建是一个复杂而长期的过程,需要政府、社会和个体的共同努力。通过深入挖掘共同价值观、引导社会观念转变、制定有力的政策法规、推动科技创新、加强国际合作等手段,可以逐步构建一个符合中国国情的生态文明话语体系。</p><p>尽管面临着经济发展与环保之间的矛盾、社会观念的转变难度、政策执行难度等一系列挑战,但随着社会的不断进步和共同价值观的深入推广,中国自主的生态文明话语体系有望取得显著的成就。</p><p>未来,生态文明有望成为中国的核心价值观之一,引领国家向绿色、可持续的未来迈进。通过政府、社会和个体的共同努力,中国将在构建生态文明话语体系的道路上取得更大的进展,为全球环保事业作出更大的贡献。这将为后代留下一个更加美好、可持续的生态环境。</p>
+                                            </div>
+                                        <!--summary end-->
+                                        <!--xp 20150305 end-->
+                                    </div>
+                                    <!--summary end-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--tab end-->
+                </div>
+                <!--DetailReport end-->
+            </div>
+            <div class="wrapper_con_Bottom"></div>
+        </div>
+        <!--wrapper_con end-->
+    </div>
+    <!--wrapper_topbg end-->
+    <div class="copyright">版权所有 <a href="https://www.paperyy.com" target="_blank">www.paperyy.com</a></div>
+    <script type="text/javascript">
+        $(".recom-row").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+        $(".recommend-img").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+	$(".left_top_btn").each(function () {
+            var href = $(this).attr("href");
+            $(this).attr("href", "https://" + domainUrl + href.substring(href.indexOf("/", href.indexOf("//") + 2)));
+        })
+
+        var zjkTips = getZjkTipsStr();
+        $(function (){
+            resizeWidth();
+        });
+
+        function resizeWidth() {
+            if($(window).width() > 1515){
+                // showZjkTips();
+            }
+        }
+        var zjkTimer;
+        function showZjkTips(){
+            if(zjkTips) {
+                $(".zjk-tips").text(zjkTips);
+                $('.zjk-tips').show();
+                zjkTimer = setTimeout(function () {
+
+                    $('.zjk-tips').hide();
+                }, 5000);
+            }else{
+                $(".zjk-tips").hide();
+            }
+        }
+        function getZjkTipsStr(){
+            return '勾选自建库查重可极大提高查重精准度哦！'
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            if(!$('.recommend-img-boximg').length){
+                return
+            }
+            $.ajax({
+                type: "get",
+                url: "https://gateway.ixueshu.com/ad-server/1449266808139870210.jsonp",
+                dataType: 'jsonp',
+                async: false,
+                jsonp: 'jsonpCallback',
+                success: function(data) {
+                    var html = '';
+                    var reportnum = 'YY202311251928294078';
+                    var per = '40';
+                    for(var i=0;i<data.length;i++){
+                        html +=	'<li>'
+                        if(data[i].url){
+                            html += '<a class="recommend-img" href="'+data[i].url.replace("${reportnum!}",reportnum)+'" target="_blank">'
+                        }else{
+                            html += '<a class="recommend-img">'
+                        }
+                        html +=	'<div class="banner_0509" style="background: url('+data[i].image+')">'
+                        if(data[i].depict){
+
+                            html +=	''+data[i].depict.replace("${per}",per)+''
+                        }
+                        html +=	'</div>'
+                        html +=	'</a>'
+                        html +=	'</li>'
+                    }
+                    $('.recommend-img-boximg').html(html);
+                    if(data.length > 1){
+                        jQuery(".recommend-img-box").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"topLoop",autoPlay:true,interTime:6000,pnLoop:true});
+                    }
+                }
+            });
+
+        });
+    </script>
+</div>
+<script>
+    // 20220509
+    $(function (){
+        var similarity = 0.018;
+        var actHref = "https://" + domainUrl + "/member_new/free?index=2";
+        var checkOnlineHref = "https://" + domainUrl + '/online_check/prepare_check/1-58dbc1bd-367c-4068-aae8-58d353727859';
+        // if(similarity <= 0.3){
+        //     $(".seal").css({
+        //         top: "44px"
+        //     }).append('<a style="margin-top: 45px;bottom: -45px;width: 116px;height: 32px;background: linear-gradient(270deg, #FF8C8C 0%, #D95E5E 100%);box-shadow: 0px 2px 8px 0px rgba(239, 93, 62, 0.3);border-radius: 8px;border: none;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 32px;position: absolute;right: 4px;" href="'+actHref+'" target="_blank">晒重复率领红包</a>')
+        // }else{
+            $(".seal").css({
+                top: "44px"
+            }).append('<a style="margin-top: 45px;bottom: -45px;width: 116px;height: 32px;background: linear-gradient(270deg, #6B96FF 0%, #5D85E8 100%);box-shadow: 0px 2px 8px 1px rgba(46,105,242,0.3);border-radius: 8px;border: none;color: #FFFFFF;font-size: 14px;text-align: center;line-height: 32px;position: absolute;right: 4px;" href="'+checkOnlineHref+'" target="_blank"><img src="images/check_online_icon1.png" style="margin-right:5px;" />在线改重</a>')
+        // }
+    });
+    function goJC(e) {
+        var newWindow = window.open();
+        try {
+            $.ajax({
+                url: "https://" + domainUrl + '/api/user-behavior/user-behavior-collect/3/12',
+                async: true,
+                data: {pageInfo: e}
+            })
+        } catch (err) {
+
+        }
+        newWindow.location.href = "https://" + domainUrl + '/check-pay/reduce-pay-task/YY202311251928294078'
+    }
+</script>
+<!--wrapper end-->
+<div id = "checkExtInfo" style="display: none;visibility: hidden;">
+        <p id="edition">-1</p>
+        <p id="reportKind">default</p>
+        <p id="author"></p>
+
+</div>
+</body>
+</html>

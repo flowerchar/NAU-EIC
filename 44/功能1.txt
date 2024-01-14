@@ -1,0 +1,114 @@
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.By;
+
+@SuppressWarnings("unused")
+public class Example {
+
+    // Mooctest Selenium Example
+
+    // public static Integer 2000 = 2000;
+    // <!> Check if selenium-standalone.jar is added to build path.
+
+    public static void test(WebDriver driver) {
+        // TODO Test script
+        // eg:driver.get("https://www.baidu.com/")
+        // eg:driver.findElement(By.id("wd"));
+    	
+    	
+    	try {
+    		
+
+    		driver.get("https://www.163.com/");
+    		driver.manage().window().maximize();
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("家居")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[1].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("设计师")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[2].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("家装案例")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[3].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[9]/span[2]")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[10]/div[2]/div/span[6]")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("btnSearch")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("searchTxt")).sendKeys("现代");
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("search")).click();
+    		Thread.sleep(10000);
+    		driver.close();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[2].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("js_lofter_icon_url")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[3].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("数码家电")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[4].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("品质尖货")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.linkText("澳门")).click();
+    		Thread.sleep(5000);
+    		driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[3]/a[2]/div/i[2]")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[2]/div/div[2]/div[2]/ul/li[1]/div/div/div[1]/a/div/img")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[5].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("item-1")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/div[3]/div[1]/div[2]/div[1]/ul/div[1]/li/div/div[2]/span[3]")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("j-sortTime")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.id("j-yx-fixedtoolGoTop")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("yx-cp-searchInput")).sendKeys("香薰");
+    		Thread.sleep(6000);
+    		driver.findElement(By.className("yx-cp-searchButton")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[1]/div[1]/div/a[1]")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.name("floorPrice")).sendKeys("10");
+    		Thread.sleep(2000);
+    		driver.findElement(By.name("upperPrice")).sendKeys("40");
+    		Thread.sleep(2000);
+    		driver.findElement(By.name("ok")).click();
+    		Thread.sleep(2000);
+    		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ul/li/div/div/div[1]/a/div/img")).click();
+    		Thread.sleep(2000);
+    		driver.switchTo().window(driver.getWindowHandles().toArray()[6].toString());
+    		Thread.sleep(2000);
+    		driver.findElement(By.className("w-collectZone")).click();
+    		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    }
+
+    public static void main(String[] args) {
+        // Run main function to test your script.
+        WebDriver driver = new ChromeDriver();
+        try { test(driver); } 
+        catch(Exception e) { e.printStackTrace(); }
+        finally { driver.quit(); }
+    }
+
+}
